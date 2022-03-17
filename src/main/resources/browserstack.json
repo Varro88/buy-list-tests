@@ -1,0 +1,9 @@
+{
+  "name": "BrowserStack",
+  "url": "toBeChanged",
+  "device.name": "Google Pixel 2",
+  "platform.name": "Android",
+  "platform.version": "8.0",
+  "automation.name": "Appium",
+  "app.path": "toBeChanged"
+}
