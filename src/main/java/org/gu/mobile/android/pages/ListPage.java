@@ -14,8 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.CollectionCondition.*;
-import static com.codeborne.selenide.Condition.hidden;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -127,7 +126,7 @@ public class ListPage extends BasePage {
         return this;
     }
 
-    @Step("Verify items are in specific order")
+    @Step("Verify items are in specified order")
     public ListPage verifyItemsOrder(List<Item> items) {
         $(itemsList).$$(itemTitleLabel)
                 .shouldHave(texts(items.stream().map(Item::getName).collect(Collectors.toList())));
@@ -151,5 +150,9 @@ public class ListPage extends BasePage {
     public ListPage verifyListIsEmpty() {
         $$(itemTitleLabel).shouldHave(size(0));
         return this;
+    }
+
+    public void verifyTitle(String name) {
+        $(titleLabel).shouldHave(text(name));
     }
 }

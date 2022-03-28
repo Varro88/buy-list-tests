@@ -1,0 +1,18 @@
+<suite name="Suite1" verbose="1" >
+    <test name="E2E" >
+        <classes>
+            <class name="org.gu.mobile.android.FlowTests" />
+        </classes>
+    </test>
+    <test name="Pages">
+        <classes>
+            <class name="org.gu.mobile.android.MainPageTests"/>
+            <class name="org.gu.mobile.android.ListPageTests"/>
+        </classes>
+    </test>
+    <test name="Features">
+        <classes>
+            <class name="org.gu.mobile.android.ExitTests"/>
+        </classes>
+    </test>
+</suite>

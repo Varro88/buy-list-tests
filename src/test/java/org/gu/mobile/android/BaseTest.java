@@ -7,21 +7,18 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.gu.mobile.android.driver.DriverFactory;
-import org.openqa.selenium.DeviceRotation;
 import org.openqa.selenium.ScreenOrientation;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
     protected WebDriver driver;
 
-    @BeforeClass
+    @BeforeTest
     public void beforeClass() throws IOException {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         driver = DriverFactory.createDriver();

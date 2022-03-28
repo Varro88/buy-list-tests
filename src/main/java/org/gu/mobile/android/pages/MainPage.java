@@ -1,13 +1,10 @@
 package org.gu.mobile.android.pages;
 
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.appmanagement.ApplicationState;
 import io.qameta.allure.Step;
-import org.gu.mobile.android.Utils.UIHelper;
 import org.gu.mobile.android.constants.Constants;
 import org.gu.mobile.android.data.models.Item;
 import org.openqa.selenium.By;
@@ -19,7 +16,6 @@ import static com.codeborne.selenide.CollectionCondition.empty;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static io.appium.java_client.appmanagement.ApplicationState.NOT_RUNNING;
 import static io.appium.java_client.appmanagement.ApplicationState.RUNNING_IN_BACKGROUND;
 
 public class MainPage extends BasePage {
@@ -32,6 +28,7 @@ public class MainPage extends BasePage {
 
     private final By yesButton = MobileBy.id("com.slava.buylist:id/button1");
     private final By noButton = MobileBy.id("com.slava.buylist:id/button2");
+    private final By thumbsUpButton = MobileBy.id("com.slava.buylist:id/imageButton1");
 
     private final By adsContainer = MobileBy.id("com.slava.buylist:id/adView");
     private final By adsTitle = MobileBy.className("android.widget.TextView");
@@ -41,15 +38,23 @@ public class MainPage extends BasePage {
         super(driver);
     }
 
-    public void verifyTitle() {
+    public MainPage verifyTitle() {
         $(titleLabel).shouldHave(text("Buy list"));
+        return this;
     }
 
-    @Step("Add list")
+    @Step("Create and open list")
     public ListPage addList(String name) {
-        $(nameInput).val(name);
-        $(addListButton).click();
+        fillListName(name);
         return new ListPage(driver);
+    }
+
+    @Step("Create list")
+    public MainPage fillListName(String name) {
+        $(nameInput).val(name);
+        $(nameInput).shouldHave(text(name));
+        $(addListButton).click();
+        return this;
     }
 
     @Step("Verify list info")
@@ -89,8 +94,14 @@ public class MainPage extends BasePage {
     }
 
     @Step("Verify ads")
-    public void verifyAds() {
+    public MainPage verifyAds() {
         $(adsContainer).$(adsTitle).shouldBe(visible).shouldHave(text("Test Ad"));
         $(adsContainer).$(adsContent).shouldBe(visible);
+        return this;
+    }
+
+    public void openPlayStore() {
+        Selenide.back();
+        $(thumbsUpButton).click();
     }
 }
