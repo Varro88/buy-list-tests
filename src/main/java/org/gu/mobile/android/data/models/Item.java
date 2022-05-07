@@ -2,6 +2,13 @@ package org.gu.mobile.android.data.models;
 
 import org.gu.mobile.android.Utils.DataHelper;
 import org.gu.mobile.android.constants.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import static io.qala.datagen.RandomShortApi.*;
 
@@ -17,14 +24,18 @@ public class Item {
     private static final int MIN_FIELD_LENGTH = 3;
     private static final String DEFAULT_CURRENCY = "£";
 
+    static Logger logger = LoggerFactory.getLogger("Item");
+
     public static Item getRandomItem() {
-        return new Item().setName(alphanumeric(MIN_FIELD_LENGTH, 10))
+        Item item = new Item().setName(alphanumeric(MIN_FIELD_LENGTH, 10))
                 .setPrice(integer(1, 50))
                 .setCurrency(DEFAULT_CURRENCY)
                 .setAmount(integer(1, 10))
                 .setUnit(DataHelper.getRandomListItem(Constants.UNITS))
                 .setComment(english(0, 25))
                 .setCategory(DataHelper.getRandomListItem(Constants.CATEGORIES));
+        logger.info("Created item: " + item.toString());
+        return item;
     }
 
     public String getName() {
@@ -96,6 +107,15 @@ public class Item {
 
     @Override
     public String toString() {
-        return String.format("Name: %s, Category: %s, Comment: %s", name, category, comment);
+        StringBuilder sb = new StringBuilder();
+        Arrays.stream(Item.class.getDeclaredFields()).sorted(Comparator.comparing(Field::getName))
+                .forEach(i -> {
+                    try {
+                        sb.append(String.format("[%s]: %s; ", i.getName(), i.get(this)));
+                    } catch (IllegalAccessException e) {
+                        logger.error("Can't parse item field: ", e);
+                    }
+                });
+        return sb.toString();
     }
 }

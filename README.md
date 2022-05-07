@@ -14,6 +14,12 @@ Repository contains UI tests for ShoppingApp
 3. Specify config name via `-DconfigName=someConfig` if required
 4. Save and run configuration
 
+### Run tests in IntelliJ Idea via Maven and Surefire plugin
+1. Create new Maven run configuration
+2. Select required run parameters (e.g. `clean test -Dsurefire.suiteXmlFiles=testng.xml -DappPath=/Users/user/Android/ShoppingList.apk`)
+3. Specify config name via `-DconfigName=someConfig` if required
+4. Save and run configuration
+
 ### Allure report
 When test run is completed data for Allure report  is generated as well. To open report run Maven task `allure:serve`
 

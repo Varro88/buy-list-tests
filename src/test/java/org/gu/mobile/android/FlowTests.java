@@ -1,14 +1,20 @@
 package org.gu.mobile.android;
 
+import com.codeborne.selenide.Selenide;
+import io.appium.java_client.MobileBy;
+import io.qameta.allure.Description;
 import org.gu.mobile.android.data.models.BuyList;
 import org.gu.mobile.android.data.models.Item;
+import org.gu.mobile.android.pages.ListPage;
 import org.gu.mobile.android.pages.MainPage;
-import org.testng.annotations.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;;
 
-import java.util.List;
+import static com.codeborne.selenide.Selenide.$;
 
 public class FlowTests extends BaseTest {
     @Test
+    @Description("Add new list with items")
     public void addNewList() {
         BuyList list = new BuyList("AddNewList");
         list.addToList(Item.getRandomItem());
@@ -23,15 +29,28 @@ public class FlowTests extends BaseTest {
     }
 
     @Test
+    @Description("Create list and cancel item adding")
     public void cancelListCreating() {
         BuyList list = new BuyList("CancelList");
         Item tempItem = Item.getRandomItem();
-        new MainPage(driver)
+        ((ListPage)(new MainPage(driver)
                 .addList(list.getName())
-                .addListItems(List.of(tempItem))
+                .fillItemField(tempItem)
+                .goBack()))
                 .cancel();
         new MainPage((driver))
                 .verifyItems(list.getItems())
                 .removeList(list.getName());
+    }
+
+    @AfterMethod
+    public void openMainPage() {
+        while(!$(MobileBy.id("com.slava.buylist:id/textView1")).text().equals("Buy list")) {
+            Selenide.back();
+            if($(MobileBy.id("com.slava.buylist:id/button1")).text().equalsIgnoreCase("yes")) {
+                $(MobileBy.id("com.slava.buylist:id/button1")).click();
+            }
+        }
+        new MainPage(driver).removeAllLists();
     }
 }

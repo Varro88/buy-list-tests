@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.CollectionCondition.*;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.hidden;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -54,13 +55,14 @@ public class ListPage extends BasePage {
     }
 
     @Step("Fill item fields")
-    private void fillItemField(Item item) {
+    public ListPage fillItemField(Item item) {
         $(productNameInput).val(item.getName());
         $(priceInput).val(String.valueOf(item.getPrice()));
         $(amountInput).val(String.valueOf(item.getAmount()));
         selectUnit(item.getUnit());
         $(commentInput).val(item.getComment());
         selectCategory(item.getCategory());
+        return this;
     }
 
     @Step("Confirm removing item")
@@ -90,7 +92,7 @@ public class ListPage extends BasePage {
     @Step("Back to main page")
     public MainPage goToMainPage() {
         if(((AndroidDriver)WebDriverRunner.getWebDriver()).isKeyboardShown()) {
-            Selenide.back();
+            ((AndroidDriver) WebDriverRunner.getWebDriver()).hideKeyboard();
         }
         Selenide.back();
         return new MainPage(driver);
@@ -139,7 +141,7 @@ public class ListPage extends BasePage {
         UIHelper.selectOption(unit);
     }
 
-    @Step("Select '{unit}' as category")
+    @Step("Select '{category}' as category")
     public void selectCategory(String category) {
         $(categoriesList).click();
         UIHelper.selectOption(category);
@@ -152,7 +154,13 @@ public class ListPage extends BasePage {
         return this;
     }
 
-    public void verifyTitle(String name) {
+    public ListPage verifyListTitle(String name) {
         $(titleLabel).shouldHave(text(name));
+        return this;
+    }
+
+    public ListPage verifyItemTitle(String name) {
+        $(itemTitleLabel).shouldHave(text(name));
+        return this;
     }
 }

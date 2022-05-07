@@ -1,6 +1,6 @@
 package org.gu.mobile.android.pages;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.Selenide;
 import io.appium.java_client.MobileBy;
 import org.gu.mobile.android.Utils.UIHelper;
 import org.openqa.selenium.By;
@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class SettingsPage extends BasePage {
     private final By settingsItem = MobileBy.id("android:id/title");
-    private final String menuItemSelector = "new UiSelector().text('%s')";
+    private final String menuItemSelector = "new UiSelector().text(\"%s\")";
     private final By alertTitle = MobileBy.id("android:id/alertTitle");
     private final By sortTypeItem = MobileBy.id("android:id/text1");
 
@@ -27,7 +27,7 @@ public class SettingsPage extends BasePage {
 
     public void setSortingOrder(int sortTypeIndex) {
         $(settingsItem).click();
-        $(String.format(menuItemSelector, "Sort list")).click();
+        $(MobileBy.AndroidUIAutomator(String.format(menuItemSelector, "Sort list"))).click();
         $(alertTitle).shouldBe(visible);
         $$(sortTypeItem).get(sortTypeIndex).click();
         Selenide.back();
