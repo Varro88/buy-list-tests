@@ -19,7 +19,7 @@ public class FlowTests extends BaseTest {
         BuyList list = new BuyList("AddNewList");
         list.addToList(Item.getRandomItem());
         list.addToList(Item.getRandomItem());
-        new MainPage(driver)
+        new MainPage()
                 .addList(list.getName())
                 .addListItems(list.getItems())
                 .verifyItems(list.getItems())
@@ -33,12 +33,12 @@ public class FlowTests extends BaseTest {
     public void cancelListCreating() {
         BuyList list = new BuyList("CancelList");
         Item tempItem = Item.getRandomItem();
-        ((ListPage)(new MainPage(driver)
+        ((ListPage)(new MainPage()
                 .addList(list.getName())
                 .fillItemField(tempItem)
                 .goBack()))
                 .cancel();
-        new MainPage((driver))
+        new MainPage()
                 .verifyItems(list.getItems())
                 .removeList(list.getName());
     }
@@ -51,6 +51,6 @@ public class FlowTests extends BaseTest {
                 $(MobileBy.id("com.slava.buylist:id/button1")).click();
             }
         }
-        new MainPage(driver).removeAllLists();
+        new MainPage().removeAllLists();
     }
 }

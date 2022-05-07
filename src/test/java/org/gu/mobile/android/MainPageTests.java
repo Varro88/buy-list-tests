@@ -9,6 +9,6 @@ public class MainPageTests extends BaseTest {
     @Test
     @Description("Verify main page elements")
     public void verifyMainPageElements() {
-        new MainPage(driver).verifyTitle().verifyAds();
+        new MainPage().verifyTitle().verifyAds();
     }
 }

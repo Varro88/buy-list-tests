@@ -16,7 +16,7 @@ public class ListPageTests extends BaseTest {
     public void deleteItem() {
         BuyList list = new BuyList("LIST_DeleteItem");
         list.addToList(Item.getRandomItem());
-        new MainPage(driver)
+        new MainPage()
                 .addList(list.getName())
                 .addListItems(list.getItems())
                 .removeItem(list.getItem(0))
@@ -34,7 +34,7 @@ public class ListPageTests extends BaseTest {
         BuyList list = new BuyList("LIST_EditItem");
         list.addToList(Item.getRandomItem());
         Item anotherItem = Item.getRandomItem();
-        new MainPage(driver)
+        new MainPage()
                 .addList(list.getName())
                 .addListItems(list.getItems())
                 .editItem(list.getItem(0), anotherItem)
@@ -46,14 +46,14 @@ public class ListPageTests extends BaseTest {
     @Test(dataProvider = "tooShortListNames", dataProviderClass = DataProviders.class)
     @Description("User cannot create list with too short name")
     public void cantCreateListWithTooShortName(String name) {
-        new MainPage(driver).fillListName(name)
+        new MainPage().fillListName(name)
                 .verifyTitle();
     }
 
     @Test(dataProvider = "validListNames", dataProviderClass = DataProviders.class)
     @Description("User can create list with allowed name length")
     public void canCreateListWithValidNameLength(String name) {
-        new MainPage(driver).addList(name)
+        new MainPage().addList(name)
                 .verifyListTitle(name)
                 .goToMainPage()
                 .removeList(name);
@@ -63,6 +63,6 @@ public class ListPageTests extends BaseTest {
             dataProvider = "tooLongListNames", dataProviderClass = DataProviders.class)
     @Description("User cannot create list with too long name")
     public void cantCreateListWithTooLongName(String name) {
-        new MainPage(driver).fillListName(name);
+        new MainPage().fillListName(name);
     }
 }

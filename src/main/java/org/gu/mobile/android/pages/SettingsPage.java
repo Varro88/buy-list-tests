@@ -21,10 +21,6 @@ public class SettingsPage extends BasePage {
     private final By alertTitle = MobileBy.id("android:id/alertTitle");
     private final By sortTypeItem = MobileBy.id("android:id/text1");
 
-    public SettingsPage(WebDriver driver) {
-        super(driver);
-    }
-
     public void setSortingOrder(int sortTypeIndex) {
         $(settingsItem).click();
         $(MobileBy.AndroidUIAutomator(String.format(menuItemSelector, "Sort list"))).click();

@@ -8,12 +8,12 @@ public class ExitTests extends BaseTest {
     @Test(description = "Cancel app exit")
     @Description("Exit app and cancel it")
     public void noToStay() {
-        new MainPage(driver).exitAndCancel();
+        new MainPage().exitAndCancel();
     }
 
     @Test(description = "Proceed to app exit")
     @Description("Exit app and confirm it")
     public void yesToExit() {
-        new MainPage(driver).exitAndConfirm();
+        new MainPage().exitAndConfirm();
     }
 }

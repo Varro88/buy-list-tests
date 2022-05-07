@@ -10,7 +10,7 @@ public class SettingsTests extends BaseTest {
     @Test
     @Description("Verify default categories")
     public void verifyDefaultCategories() {
-        new MainPage(driver).openSetting()
+        new MainPage().openSetting()
                 .verifyCategoriesList(Constants.CATEGORIES.subList(1, Constants.CATEGORIES.size()));
         Selenide.back();
         Selenide.back();

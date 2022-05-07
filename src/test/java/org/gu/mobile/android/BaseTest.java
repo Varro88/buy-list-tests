@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 public class BaseTest {
-    protected WebDriver driver;
 
     @BeforeMethod
     protected void startTest(Method method) throws Exception {
@@ -35,8 +34,8 @@ public class BaseTest {
     @BeforeSuite
     public void before() throws IOException {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        driver = DriverFactory.createDriver();
-        ((AndroidDriver)driver).rotate(ScreenOrientation.PORTRAIT);
+        AppiumDriver driver = DriverFactory.createDriver();
+        driver.rotate(ScreenOrientation.PORTRAIT);
         WebDriverRunner.setWebDriver(driver);
     }
 

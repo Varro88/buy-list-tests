@@ -41,10 +41,6 @@ public class MainPage extends BasePage {
     private final By adsTitle = MobileBy.className("android.widget.TextView");
     private final By adsContent = MobileBy.className("android.webkit.WebView");
 
-    public MainPage(WebDriver driver) {
-        super(driver);
-    }
-
     @Step("Verify 'Buy list' title")
     public MainPage verifyTitle() {
         $(titleLabel).shouldHave(text("Buy list"));
@@ -54,7 +50,7 @@ public class MainPage extends BasePage {
     @Step("Create and open list")
     public ListPage addList(String name) {
         fillListName(name);
-        return new ListPage(driver);
+        return new ListPage();
     }
 
     @Step("Create list")
@@ -78,11 +74,8 @@ public class MainPage extends BasePage {
     @Step("Remove list")
     public MainPage removeList(String name) {
         $x(String.format(deleteButtonXpath, name)).click();
-        //$$(deleteButton).get(1).click();
         $(okToDeleteButton).click();
         $x(String.format(listTitleXpath, name)).shouldBe(hidden);
-        //$(listTitleLabel).shouldBe(hidden);
-        //$$(listTitleLabel).should(CollectionCondition.noneMatch("No element with text", e->e.getText().equals(name)));
         return this;
     }
 

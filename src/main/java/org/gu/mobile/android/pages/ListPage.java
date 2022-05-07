@@ -41,10 +41,6 @@ public class ListPage extends BasePage {
     private final By yesModalButton = MobileBy.id("android:id/button1");
     private final By noModalButton = MobileBy.id("android:id/button2");
 
-    public ListPage(WebDriver driver) {
-        super(driver);
-    }
-
     @Step("Add list items")
     public ListPage addListItems(List<Item> items) {
         for (Item item : items) {
@@ -80,13 +76,13 @@ public class ListPage extends BasePage {
     @Step("Save list")
     public MainPage save() {
         $(yesModalButton).click();
-        return new MainPage(driver);
+        return new MainPage();
     }
 
     @Step("Cancel saving")
     public MainPage cancel() {
         $(noModalButton).click();
-        return new MainPage(driver);
+        return new MainPage();
     }
 
     @Step("Back to main page")
@@ -95,7 +91,7 @@ public class ListPage extends BasePage {
             ((AndroidDriver) WebDriverRunner.getWebDriver()).hideKeyboard();
         }
         Selenide.back();
-        return new MainPage(driver);
+        return new MainPage();
     }
 
     @Step("Verify added item")

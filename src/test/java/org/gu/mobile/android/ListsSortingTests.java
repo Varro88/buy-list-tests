@@ -41,7 +41,7 @@ public class ListsSortingTests extends BaseTest {
         i3.setComment("Added3");
         list.add(i3);
 
-        new MainPage(driver)
+        new MainPage()
                 .addList("ForSorting #1")
                 .addListItems(list);
     }
@@ -50,28 +50,28 @@ public class ListsSortingTests extends BaseTest {
     @Description("Sort lists by category")
     public void sortByCategoryTest() {
         list.sort(Comparator.comparing(Item::getCategory));
-        new ListPage(driver).openSetting().setSortingOrder(0);
-        new ListPage(driver).verifyItemsOrder(list);
+        new ListPage().openSetting().setSortingOrder(0);
+        new ListPage().verifyItemsOrder(list);
     }
 
     @Test
     @Description("Sort lists by alphabet")
     public void sortByAlphabetTest() {
         list.sort(Comparator.comparing(Item::getName));
-        new ListPage(driver).openSetting().setSortingOrder(1);
-        new ListPage(driver).verifyItemsOrder(list);
+        new ListPage().openSetting().setSortingOrder(1);
+        new ListPage().verifyItemsOrder(list);
     }
 
     @Test
     @Description("Sort lists by preorder")
     public void sortByPreOrderTest() {
         list.sort(Comparator.comparing(Item::getComment).reversed());
-        new ListPage(driver).openSetting().setSortingOrder(2);
-        new ListPage(driver).verifyItemsOrder(list);
+        new ListPage().openSetting().setSortingOrder(2);
+        new ListPage().verifyItemsOrder(list);
     }
 
     @AfterClass(alwaysRun = true)
     public void afterClass() {
-        new ListPage(driver).goToMainPage();
+        new ListPage().goToMainPage();
     }
 }
