@@ -1,14 +1,14 @@
 package org.gu.mobile.android.data.models;
 
-import org.gu.mobile.android.Utils.DataHelper;
 import org.gu.mobile.android.constants.Constants;
+import org.gu.mobile.android.utils.DataHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.stream.Collectors;
 
 import static io.qala.datagen.RandomShortApi.*;
 
@@ -24,7 +24,7 @@ public class Item {
     private static final int MIN_FIELD_LENGTH = 3;
     private static final String DEFAULT_CURRENCY = "£";
 
-    static Logger logger = LoggerFactory.getLogger("Item");
+    static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     public static Item getRandomItem() {
         Item item = new Item().setName(alphanumeric(MIN_FIELD_LENGTH, 10))

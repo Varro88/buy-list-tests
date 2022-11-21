@@ -5,10 +5,9 @@ import com.codeborne.selenide.WebDriverRunner;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
-import org.gu.mobile.android.Utils.UIHelper;
 import org.gu.mobile.android.data.models.Item;
+import org.gu.mobile.android.utils.UIHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 import java.util.stream.Collectors;

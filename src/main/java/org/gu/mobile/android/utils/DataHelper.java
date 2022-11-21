@@ -1,4 +1,4 @@
-package org.gu.mobile.android.Utils;
+package org.gu.mobile.android.utils;
 
 import java.util.List;
 

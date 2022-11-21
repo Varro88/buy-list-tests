@@ -16,4 +16,5 @@ public class Constants {
     public static Config CONFIG;
     public static final String BROWSERSTACK_URL = "hub-cloud.browserstack.com/wd/hub";
     public static final String APP_ID = "com.slava.buylist";
+    public static final String CONFIGS_PATH = "src/main/resources/";
 }

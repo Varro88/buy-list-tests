@@ -8,7 +8,7 @@ import org.gu.mobile.android.data.models.Item;
 import org.gu.mobile.android.pages.ListPage;
 import org.gu.mobile.android.pages.MainPage;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;;
+import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 

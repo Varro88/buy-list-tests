@@ -2,14 +2,13 @@ package org.gu.mobile.android.pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.appmanagement.ApplicationState;
 import io.qameta.allure.Step;
 import org.gu.mobile.android.constants.Constants;
 import org.gu.mobile.android.data.models.Item;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
@@ -55,7 +54,6 @@ public class MainPage extends BasePage {
 
     @Step("Create list")
     public MainPage fillListName(String name) {
-        $(nameInput).clear();
         $(nameInput).val(name);
         $(nameInput).shouldHave(exactText(name));
         $(addListButton).click();
@@ -95,7 +93,7 @@ public class MainPage extends BasePage {
     public void exitAndConfirm() {
         Selenide.back();
         $(yesButton).click();
-        ApplicationState state = ((AppiumDriver) WebDriverRunner.getWebDriver()).queryAppState(Constants.APP_ID);
+        ApplicationState state = ((AndroidDriver) WebDriverRunner.getWebDriver()).queryAppState(Constants.APP_ID);
         assert state == RUNNING_IN_BACKGROUND;
     }
 

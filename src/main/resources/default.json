@@ -3,7 +3,7 @@
   "url": "http://127.0.0.1:4723/wd/hub",
   "device.name": "Google Nexus 6P",
   "platform.name": "Android",
-  "platform.version": "7",
+  "platform.version": "8",
   "automation.name": "Appium",
   "app.path": "ShoppingList.apk"
 }

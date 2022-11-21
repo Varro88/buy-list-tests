@@ -5,7 +5,6 @@ import com.codeborne.selenide.WebDriverRunner;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Selenide.$;
 

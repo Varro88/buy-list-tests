@@ -2,9 +2,8 @@ package org.gu.mobile.android.pages;
 
 import com.codeborne.selenide.Selenide;
 import io.appium.java_client.MobileBy;
-import org.gu.mobile.android.Utils.UIHelper;
+import org.gu.mobile.android.utils.UIHelper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import java.util.ArrayList;

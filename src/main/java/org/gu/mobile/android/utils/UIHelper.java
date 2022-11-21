@@ -1,4 +1,4 @@
-package org.gu.mobile.android.Utils;
+package org.gu.mobile.android.utils;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -16,6 +16,8 @@ import static io.appium.java_client.touch.offset.ElementOption.element;
 import static java.time.Duration.ofMillis;
 
 public class UIHelper {
+    private static final int TAP_DURATION_MS = 250;
+
     public static void selectOption(String text) {
         $(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+ text +"\").instance(0))")).click();
     }
@@ -28,7 +30,7 @@ public class UIHelper {
     public static void tapByElement (SelenideElement element) {
         new TouchAction((PerformsTouchActions) WebDriverRunner.getWebDriver())
                 .tap(tapOptions().withElement(element(element)))
-                .waitAction(waitOptions(ofMillis(250))).perform();
+                .waitAction(waitOptions(ofMillis(TAP_DURATION_MS))).perform();
     }
 
     public static void longTap(SelenideElement element) {

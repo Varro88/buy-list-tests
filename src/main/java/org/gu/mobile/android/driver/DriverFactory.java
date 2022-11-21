@@ -2,24 +2,28 @@ package org.gu.mobile.android.driver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.gu.mobile.android.constants.Constants;
 import org.gu.mobile.android.data.models.Config;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.invoke.MethodHandles;
 import java.net.URL;
 
 import static io.appium.java_client.remote.MobileCapabilityType.*;
 
 public class DriverFactory {
+    static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
     public static AppiumDriver createDriver() throws IOException {
-        String configName = System.getProperty("configName", "default");
-        Constants.CONFIG = readConfig("src/main/resources/" + configName + ".json");
+        String configName = System.getProperty("configName", "default.json");
+        Constants.CONFIG = readConfig(configName);
         DesiredCapabilities capabilities = getCapabilities();
-        return new AndroidDriver<MobileElement>(new URL(Constants.CONFIG.getUrl()), capabilities);
+        return new AndroidDriver(new URL(Constants.CONFIG.getUrl()), capabilities);
     }
 
     private static DesiredCapabilities getCapabilities() {
@@ -36,10 +40,18 @@ public class DriverFactory {
         }};
     }
 
-    private static Config readConfig(String configPath) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
+    private static Config readConfig(String configName) throws IOException {
+        if(!configName.endsWith(".json")) {
+            configName += ".json";
+        }
+        File configFile = new File(Constants.CONFIGS_PATH + configName);
+        if(!configFile.exists() || configFile.isDirectory()) {
+            logger.warn(String.format("File '%s' not found, default config is used", configName));
+            configFile = new File(Constants.CONFIGS_PATH + "default.json");
+        }
 
-        Config config = mapper.readValue(new File(configPath), Config.class);
+        ObjectMapper mapper = new ObjectMapper();
+        Config config = mapper.readValue(configFile, Config.class);
         if(Boolean.getBoolean("useBrowserstack")) {
             String bsUsername = System.getProperty("bsUsername");
             String bsKey = System.getProperty("bsKey");
