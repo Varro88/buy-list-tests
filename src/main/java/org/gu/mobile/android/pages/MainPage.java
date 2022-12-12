@@ -18,25 +18,25 @@ import static com.codeborne.selenide.Selenide.*;
 import static io.appium.java_client.appmanagement.ApplicationState.RUNNING_IN_BACKGROUND;
 
 public class MainPage extends BasePage {
-    private final By titleLabel = MobileBy.id("com.slava.buylist:id/textView1");
+    private final By titleLabel = MobileBy.id("textView1");
 
-    private final By listTitleLabel = MobileBy.id("com.slava.buylist:id/title");
+    private final By listTitleLabel = MobileBy.id("title");
     private final String listTitleXpath = "//android.widget.TextView[@id=\"com.slava.buylist:id/title\n\" and contains(@text, \"%s\")]";
 
-    private final By nameInput = MobileBy.id("com.slava.buylist:id/editText1");
-    private final By addListButton = MobileBy.id("com.slava.buylist:id/button2");
-    private final By infoString = MobileBy.id("com.slava.buylist:id/str1");
+    private final By nameInput = MobileBy.id("editText1");
+    private final By addListButton = MobileBy.id("button2");
+    private final By infoString = MobileBy.id("str1");
 
-    private final By deleteButton = MobileBy.id("com.slava.buylist:id/imageView1");
+    private final By deleteButton = MobileBy.id("mageView1");
     private final String deleteButtonXpath = "//android.widget.TextView[@resource-id=\"com.slava.buylist:id/title\" and contains(@text, \"%s\")]/following-sibling::android.widget.ImageView[@resource-id=\"com.slava.buylist:id/imageView1\"]";
 
     private final By okToDeleteButton = MobileBy.id("android:id/button1");
 
-    private final By yesButton = MobileBy.id("com.slava.buylist:id/button1");
-    private final By noButton = MobileBy.id("com.slava.buylist:id/button2");
-    private final By thumbsUpButton = MobileBy.id("com.slava.buylist:id/imageButton1");
+    private final By yesButton = MobileBy.id("button1");
+    private final By noButton = MobileBy.id("button2");
+    private final By thumbsUpButton = MobileBy.id("imageButton1");
 
-    private final By adsContainer = MobileBy.id("com.slava.buylist:id/adView");
+    private final By adsContainer = MobileBy.id("dView");
     private final By adsTitle = MobileBy.className("android.widget.TextView");
     private final By adsContent = MobileBy.className("android.webkit.WebView");
 
@@ -110,7 +110,7 @@ public class MainPage extends BasePage {
     }
 
     public MainPage removeAllLists() {
-        $$(MobileBy.id("com.slava.buylist:id/title")).texts().forEach(this::removeList);
+        $$(MobileBy.id("title")).texts().forEach(this::removeList);
         return this;
     }
 }

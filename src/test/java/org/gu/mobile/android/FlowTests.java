@@ -45,10 +45,10 @@ public class FlowTests extends BaseTest {
 
     @AfterMethod
     public void openMainPage() {
-        while(!$(MobileBy.id("com.slava.buylist:id/textView1")).text().equals("Buy list")) {
+        while(!$(MobileBy.id("textView1")).text().equals("Buy list")) {
             Selenide.back();
-            if($(MobileBy.id("com.slava.buylist:id/button1")).text().equalsIgnoreCase("yes")) {
-                $(MobileBy.id("com.slava.buylist:id/button1")).click();
+            if($(MobileBy.id("button1")).text().equalsIgnoreCase("yes")) {
+                $(MobileBy.id("button1")).click();
             }
         }
         new MainPage().removeAllLists();
