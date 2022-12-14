@@ -9,6 +9,22 @@ Repository contains UI tests for ShoppingApp
  * `src/main/java/org/gu/mobile/android/utils` - utility classes for common actions
  * `src/test/java/org/gu/mobile/android` - tests themselves
 
+## Manual setup
+* IDE with Java support ([IntelliJ IDEA CE](https://www.jetbrains.com/idea/download/) is recommended)
+* Java 11 or later (in IntelliJ IDEA: File->Project Structure->Platform Settings->SDK->Download)
+* Appium Desktop ([Release from GitHub](https://github.com/appium/appium-desktop/releases))
+* Appium Inspector ([Release from GitHub](https://github.com/appium/appium-inspector/releases))
+
+## Setup via brew
+* Install [Homebrew](https://brew.sh/)
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+* Install Java11 `brew install java11`
+* Install IntelliJ IDEA `brew install --cask intellij-idea-ce`
+* Create symlink for java `sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk`
+* Install NodeJS `brew install node`
+* Install Appium `npm install -g appium`
+* Run appium server in npm console `appium`
+
 ## Run tests in IntelliJ IDEA
 
 ### Using TestNG

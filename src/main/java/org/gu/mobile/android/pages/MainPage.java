@@ -36,7 +36,7 @@ public class MainPage extends BasePage {
     private final By noButton = MobileBy.id("button2");
     private final By thumbsUpButton = MobileBy.id("imageButton1");
 
-    private final By adsContainer = MobileBy.id("dView");
+    private final By adsContainer = MobileBy.id("adView");
     private final By adsTitle = MobileBy.className("android.widget.TextView");
     private final By adsContent = MobileBy.className("android.webkit.WebView");
 
