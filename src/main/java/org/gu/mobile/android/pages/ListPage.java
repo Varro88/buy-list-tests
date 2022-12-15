@@ -19,23 +19,23 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class ListPage extends BasePage {
-    private final By titleLabel = MobileBy.id("com.slava.buylist:id/textView1");
-    private final By productNameInput = MobileBy.id("com.slava.buylist:id/editText1");
-    private final By addProductButton = MobileBy.id("com.slava.buylist:id/button2");
-    private final By priceInput = MobileBy.id("com.slava.buylist:id/editText2");
-    private final By currencyLabel = MobileBy.id("com.slava.buylist:id/value");
-    private final By amountInput = MobileBy.id("com.slava.buylist:id/editText3");
-    private final By unitsList = MobileBy.id("com.slava.buylist:id/spinner1");
+    private final By titleLabel = MobileBy.id("textView1");
+    private final By productNameInput = MobileBy.id("editText1");
+    private final By addProductButton = MobileBy.id("button2");
+    private final By priceInput = MobileBy.id("editText2");
+    private final By currencyLabel = MobileBy.id("value");
+    private final By amountInput = MobileBy.id("editText3");
+    private final By unitsList = MobileBy.id("spinner1");
     private final String textFormatString = "new UiSelector().text(\"%s\")";
-    private final By commentInput = MobileBy.id("com.slava.buylist:id/editText4");
-    private final By categoriesList = MobileBy.id("com.slava.buylist:id/spinner2");
+    private final By commentInput = MobileBy.id("editText4");
+    private final By categoriesList = MobileBy.id("spinner2");
     private final By selectedItem = MobileBy.id("android:id/text1");
 
-    private final By itemsList = MobileBy.id("com.slava.buylist:id/listView1");
-    private final By itemTitleLabel = MobileBy.id("com.slava.buylist:id/title");
-    private final By itemCommentLabel = MobileBy.id("com.slava.buylist:id/str1");
-    private final By itemAmountLabel = MobileBy.id("com.slava.buylist:id/TextView01");
-    private final By itemPriceLabel = MobileBy.id("com.slava.buylist:id/textView1");
+    private final By itemsList = MobileBy.id("listView1");
+    private final By itemTitleLabel = MobileBy.id("title");
+    private final By itemCommentLabel = MobileBy.id("str1");
+    private final By itemAmountLabel = MobileBy.id("TextView01");
+    private final By itemPriceLabel = MobileBy.id("textView1");
 
     private final By yesModalButton = MobileBy.id("android:id/button1");
     private final By noModalButton = MobileBy.id("android:id/button2");
@@ -86,9 +86,7 @@ public class ListPage extends BasePage {
 
     @Step("Back to main page")
     public MainPage goToMainPage() {
-        if(((AndroidDriver)WebDriverRunner.getWebDriver()).isKeyboardShown()) {
-            ((AndroidDriver) WebDriverRunner.getWebDriver()).hideKeyboard();
-        }
+        UIHelper.hideKeyboard();
         Selenide.back();
         return new MainPage();
     }

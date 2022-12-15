@@ -40,12 +40,4 @@ public class BaseTest {
         driver.rotate(ScreenOrientation.PORTRAIT);
         WebDriverRunner.setWebDriver(driver);
     }
-
-    @AfterSuite
-    public void after() {
-        ((AppiumDriver)WebDriverRunner.getWebDriver()).closeApp();
-        if(WebDriverRunner.hasWebDriverStarted()) {
-            Selenide.closeWebDriver();
-        }
-    }
 }

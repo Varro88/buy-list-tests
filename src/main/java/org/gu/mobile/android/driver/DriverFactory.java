@@ -32,6 +32,7 @@ public class DriverFactory {
             setCapability(PLATFORM_NAME, Constants.CONFIG.getPlatformName());
             setCapability(PLATFORM_VERSION, Constants.CONFIG.getPlatformVersion());
             setCapability(APP, System.getProperty("appPath", Constants.CONFIG.getAppPath()));
+            setCapability(FULL_RESET, true);
             setCapability(AUTOMATION_NAME, Constants.CONFIG.getAutomationName());
             setCapability("project", "GridU project");
             setCapability("build", "GridU build");

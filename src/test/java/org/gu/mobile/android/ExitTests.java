@@ -5,15 +5,17 @@ import org.gu.mobile.android.pages.MainPage;
 import org.testng.annotations.Test;
 
 public class ExitTests extends BaseTest {
+    private MainPage mainPage = new MainPage();
+
     @Test(description = "Cancel app exit")
     @Description("Exit app and cancel it")
     public void noToStay() {
-        new MainPage().exitAndCancel();
+        mainPage.exitAndCancel();
     }
 
     @Test(description = "Proceed to app exit")
     @Description("Exit app and confirm it")
     public void yesToExit() {
-        new MainPage().exitAndConfirm();
+        mainPage.exitAndConfirm();
     }
 }

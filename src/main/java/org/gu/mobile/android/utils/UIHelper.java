@@ -6,6 +6,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.interactions.Actions;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -35,5 +36,11 @@ public class UIHelper {
 
     public static void longTap(SelenideElement element) {
         new Actions(element.getWrappedDriver()).clickAndHold(element).perform();
+    }
+
+    public static void hideKeyboard() {
+        if(((AndroidDriver)WebDriverRunner.getWebDriver()).isKeyboardShown()) {
+            ((AndroidDriver) WebDriverRunner.getWebDriver()).hideKeyboard();
+        }
     }
 }

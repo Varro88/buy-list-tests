@@ -32,13 +32,13 @@ public class SettingsPage extends BasePage {
         $(settingsItem).click();
         UIHelper.selectOption("Categories list");
 
-        List<String> list = new ArrayList<>($$(MobileBy.id("com.slava.buylist:id/title")).texts());
+        List<String> list = new ArrayList<>($$(MobileBy.id("title")).texts());
 
         $(MobileBy.AndroidUIAutomator("new UiScrollable("
                 + "new UiSelector().scrollable(true)).scrollIntoView("
                 + "new UiSelector().textContains(\"Alcohol, tobacco\"));")).shouldBe(visible);
 
-        list.addAll($$(MobileBy.id("com.slava.buylist:id/title")).texts());
+        list.addAll($$(MobileBy.id("title")).texts());
         List<String> actual = list.stream().distinct().collect(Collectors.toList());
         Assert.assertEquals(actual, expected);
     }
